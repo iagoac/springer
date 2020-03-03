@@ -14,6 +14,9 @@
 \usepackage{graphicx}
 \usepackage[retainorgcmds]{IEEEtrantools}
 \usepackage[colorlinks]{hyperref}
+\hypersetup{
+  citecolor = {blue}
+}
 \usepackage{siunitx}
 \usepackage{pdflscape}
 % disable labelindent
@@ -25,25 +28,24 @@
 \usepackage[utf8]{inputenc}
 \usepackage[linesnumbered, ruled, vlined]{algorithm2e}
 \usepackage{rotating}
-% \usepackage{subfigure}
 \usepackage{nicefrac}
-\usepackage{todonotes}
-\usepackage{hyperref}
 \usepackage{xspace}
 \usepackage{float}
 \usepackage{caption}
 \usepackage{subcaption}
-% \usepackage{floatrow}
 \usepackage{rotating, lscape, longtable, tabu, booktabs, siunitx, multirow}
-%\usepackage[capitalise, noabbrev]{cleveref}
-\usepackage{tkz-graph}
+\usepackage[capitalise, noabbrev]{cleveref}
 \usepackage{verbatim}
 \usepackage{mathtools}
 
-% algorithm2e input and output redefinitions
-\SetKwInOut{Input}{input}
-\SetKwInOut{Output}{output}
+% tikz libraries
+\usepackage{tkz-graph}
 
+\usetikzlibrary{arrows,arrows.meta,shapes,decorations.pathmorphing, decorations.markings, positioning}
+\let\svtikzpicture\tikzpicture
+\def\tikzpicture{\noindent\svtikzpicture}
+
+% personal definitions
 \newcommand{\uset}[1]{\ifmmode\left\{\,#1\,\right\}\else\{\,#1\,\}\fi}
 \newcommand{\ulst}[1]{\ifmmode\left[\,#1\,\right]\else[\,#1\,]\fi}
 \newcommand{\upar}[1]{\ifmmode\left(\,#1\,\right)\else(\,#1\,)\fi}
@@ -65,7 +67,7 @@
 
 \begin{document}
 
-\title{Article title \thanks{This study was financed in part by the \emph{Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil} (CAPES) - Finance Code 001, the \emph{Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brasil} (CNPq), and the \emph{Fundação de Amparo à Pesquisa de Minas Gerais - Brasil} (FAPEMIG)}}.
+\title{Article title \thanks{This study was financed in part by the \emph{Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil} (CAPES) - Finance Code 001, the \emph{Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brasil} (CNPq), and the \emph{Fundação de Amparo à Pesquisa do Estado de São Paulo - Brasil} (FAPESP)}}.
 %\subtitle{Do you have a subtitle?\\ If so, write it here}
 
 %\titlerunning{Short form of title}        % if too long for running head
@@ -75,11 +77,12 @@
 %\authorrunning{Short form of author list} % if too long for running head
 
 \institute{Iago A. Carvalho \at
-            Department of Computer Science, Universidade Federal de Minas Gerais, Av. Antônio Carlos 6627, Belo Horizonte, MG 31270-010, Brazil \\
-            Tel.: +55-31-971216117\\
-           \email{\href{mailto:iagoac@dcc.ufmg.br}{iagoac@dcc.ufmg.br}} \\            
-		   \and           
-            Homer J. Simpson \at 
+            Institute of Computing, Universidade Estadual de Campinas, Av. Albert Einstein 1251, Campinas, SP 13083-852, Brazil \\
+            Tel.: +55-32-999747846\\
+            \email{\href{mailto:iagoac@ic.unicamp.br}{iagoac@ic.unicamp.br}} \\
+            Website: \href{https://iagoac.github.io/}{https://iagoac.github.io/} \\
+		   \and
+            Homer J. Simpson \at
             Fox
 }
 
@@ -103,4 +106,3 @@ There will be an abstract here.
 \bibliography{bibsample}   % name your BibTeX data base
 
 \end{document}
-% end of file template.tex
