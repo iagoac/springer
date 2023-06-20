@@ -1,26 +1,32 @@
-\RequirePackage{fix-cm}
+%%\documentclass[referee,sn-basic]{sn-jnl}% referee option is meant for double line spacing
+%%\documentclass[lineno,sn-basic]{sn-jnl}% lineno option is meant for inserting numbers in the margin
 
-\documentclass{svjour3}                      % onecolumn (standard format)
-%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
-%\documentclass[smallextended]{svjour3}      % onecolumn (second format)
-%\documentclass[twocolumn]{svjour3}          % twocolumn
+%%Note: the following reference styles support Namedate and Numbered referencing. By default the style follows the most common style. To switch between the options you can add or remove "Numbered" in the optional parenthesis. 
+%%The option is available for: sn-basic.bst, sn-vancouver.bst, sn-chicago.bst, sn-mathphys.bst. %  
+ 
+%%\documentclass[pdflatex,bst/sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
+%%\documentclass[pdflatex,bst/sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+\documentclass[pdflatex,bst/sn-mathphys,Numbered]{sn-jnl}% Math and Physical Sciences Reference Style
+%%\documentclass[pdflatex,bst/sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
+%%\documentclass[pdflatex,bst/sn-vancouver,Numbered]{sn-jnl}% Vancouver Reference Style
+%%\documentclass[pdflatex,bst/sn-apa]{sn-jnl}% APA Reference Style 
+%%\documentclass[pdflatex,sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
+%%\documentclass[pdflatex,default]{sn-jnl}% Default
+%%\documentclass[pdflatex,default,iicol]{sn-jnl}% Default with double column layout
 
-
-\smartqed  % flush right qed marks, e.g. at end of proof
-
-\usepackage[hmargin=3.4cm,vmargin=3cm]{geometry} % This one is specific for springer journals. Define a smaller margin
-\usepackage{amssymb}
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathrsfs}
 \usepackage{graphicx}
 \usepackage[retainorgcmds]{IEEEtrantools}
-\usepackage[colorlinks]{hyperref}
+\usepackage{hyperref}
 \hypersetup{
-  citecolor = {blue}
+    colorlinks = true,
+    urlcolor = {blue},
+    citecolor = {blue}
 }
 \usepackage{siunitx}
+\usepackage{xcolor}
 \usepackage{pdflscape}
-% disable labelindent
-\let\labelindent\relax
+\let\labelindent\relax % disable labelindent
 \usepackage{enumitem}
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
@@ -33,76 +39,78 @@
 \usepackage{float}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage{rotating, lscape, longtable, tabu, booktabs, siunitx, multirow}
-\usepackage[capitalise, noabbrev]{cleveref}
+\usepackage{rotating,lscape,longtable,tabu, booktabs,multirow}
 \usepackage{verbatim}
 \usepackage{mathtools}
+\usepackage{listings}
+\usepackage[title]{appendix}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
 
-% tikz libraries
-\usepackage{tkz-graph}
+% algorithm2e input and output redefinitions
+\SetKwInOut{Inp}{input}
+\SetKwInOut{Out}{output}
+    
+\newcommand{\ie}{\textit{i.\,e.}\xspace}
+\newcommand{\eg}{\textit{e.\,g.}\xspace}
+\newcommand{\false}{\texttt{false}}
+\newcommand{\true}{\texttt{true}}
 
-\usetikzlibrary{arrows,arrows.meta,shapes,decorations.pathmorphing, decorations.markings, positioning}
-\let\svtikzpicture\tikzpicture
-\def\tikzpicture{\noindent\svtikzpicture}
-
-% personal definitions
 \newcommand{\uset}[1]{\ifmmode\left\{\,#1\,\right\}\else\{\,#1\,\}\fi}
 \newcommand{\ulst}[1]{\ifmmode\left[\,#1\,\right]\else[\,#1\,]\fi}
 \newcommand{\upar}[1]{\ifmmode\left(\,#1\,\right)\else(\,#1\,)\fi}
 \newcommand{\uioc}[1]{\ifmmode\left(\,#1\,\right]\else(\,#1\,]\fi}
 \newcommand{\uico}[1]{\ifmmode\left[\,#1\,\right)\else[\,#1\,)\fi}
 
-\newcommand{\ie}{i.\,e.,\xspace}
-\newcommand{\eg}{e.\,g.,\xspace}
-\newcommand{\false}{\texttt{false}}
-\newcommand{\true}{\texttt{true}}
+\newcommand{\mc}[1]{\multicolumn{1}{c}{#1}}
 
-% tikz libraries
-\usepackage{tkz-graph}
-\usepackage{verbatim}
-\usetikzlibrary{arrows,arrows.meta,shapes,decorations.pathmorphing, decorations.markings, positioning}
-\let\svtikzpicture\tikzpicture
-\def\tikzpicture{\noindent\svtikzpicture}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
 
+% Colors used for the review process
+\newcommand{\rone}[1]{\textcolor{Red}{#1}}% Reviewer #1
+\newcommand{\ronecolor}{\color{Red}}% Reviewer #1
+\newcommand{\rtwo}[1]{\textcolor{Blue}{#1}}% Reviewer #2
+\newcommand{\rtwocolor}{\color{Blue}}% Reviewer #2
 
 \begin{document}
 
-\title{Article title \thanks{This study was financed in part by the \emph{Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil} (CAPES) - Finance Code 001, the \emph{Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brasil} (CNPq), and the \emph{Fundação de Amparo à Pesquisa do Estado de São Paulo - Brasil} (FAPESP)}}.
-%\subtitle{Do you have a subtitle?\\ If so, write it here}
+\title[Running article Title]{Article Title}
 
-%\titlerunning{Short form of title}        % if too long for running head
+\author*[1]{\fnm{Iago A.} \sur{Carvalho}}\email{iago.carvalho@unifal-mg.edu.br}
 
-\author{Iago A. Carvalho \and Homer J. Simson}
+\author[2]{\fnm{Homer J.} \sur{Simpson}}\email{iiauthor@gmail.com}
+\equalcont{These authors contributed equally to this work.}
 
-%\authorrunning{Short form of author list} % if too long for running head
+\affil*[1]{\orgdiv{Department of Computer Science}, \orgname{Universidade Federal de Alfenas}, \orgaddress{\street{Av. Jovino Fernandes de Sales, 2600}, \city{Alfenas}, \postcode{37133-840}, \state{Minas Gerais}, \country{Brazil}}}
 
-\institute{Iago A. Carvalho \at
-            Institute of Computing, Universidade Estadual de Campinas, Av. Albert Einstein 1251, Campinas, SP 13083-852, Brazil \\
-            Tel.: +55-32-999747846\\
-            \email{\href{mailto:iagoac@ic.unicamp.br}{iagoac@ic.unicamp.br}} \\
-            Website: \href{https://iagoac.github.io/}{https://iagoac.github.io/} \\
-		   \and
-            Homer J. Simpson \at
-            Fox
-}
+\affil[2]{\orgdiv{Department}, \orgname{Organization}, \orgaddress{\street{Street}, \city{City}, \postcode{10587}, \state{State}, \country{Country}}}
 
-\date{Received: xxxx / Accepted: yyyy}
+\abstract{There will be an abstract here.}
+
+\keywords{keyword1, Keyword2, Keyword3, Keyword4}
+
+%%\pacs[JEL Classification]{D8, H51}
+%%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
 
 \maketitle
 
-\begin{abstract}
-There will be an abstract here.
-\keywords{Keyword 1 \and Keyword 2 \and Keyword 3 \and Keyword 4 \and Keyword 5}
-% \PACS{PACS code1 \and PACS code2 \and more}
-% \subclass{MSC code1 \and MSC code2 \and more}
-\end{abstract}
-
 \input{mainText}
 
-% BibTeX users please use one of
-%\bibliographystyle{spbasic}      % basic style, author-year citations
-\bibliographystyle{spmpsci}      % mathematics and physical sciences
-%\bibliographystyle{spphys}       % APS-like style for physics
-\bibliography{bibsample}   % name your BibTeX data base
+\section*{Acknowledgments}
+This study was financed in part by the \emph{Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brazil} (CAPES) - Finance Code 001, the \emph{Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil} (CNPq), and the \emph{Fundação de Amparo à Pesquisa do Estado de Minas Gerais - Brazil} (FAPEMIG).
+
+\input{appendices}
+
+%%===========================================================================================%%
+%% If you are submitting to one of the Nature Portfolio journals, using the eJP submission   %%
+%% system, please include the references within the manuscript file itself. You may do this  %%
+%% by copying the reference list from your .bbl file, paste it into the main manuscript .tex %%
+%% file, and delete the associated \verb+\bibliography+ commands.                            %%
+%%===========================================================================================%%
+
+\bibliography{bibsample}% common bib file
+%% if required, the content of .bbl file can be included here once bbl is generated
+%%\input sn-article.bbl
 
 \end{document}
